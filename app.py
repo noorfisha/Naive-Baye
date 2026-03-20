@@ -3,21 +3,23 @@ import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
-# Load dataset
 df = pd.read_csv("spam.csv")
 
-# Prepare data
-X = df['v2']
-y = df['v1']
+# Clean column names
+df.columns = df.columns.str.strip()
 
-# Train model
+st.write("Columns:", df.columns)  # Debug
+
+# Change based on your dataset
+X = df[df.columns[1]]
+y = df[df.columns[0]]
+
 vectorizer = CountVectorizer()
 X_vec = vectorizer.fit_transform(X)
 
 model = MultinomialNB()
 model.fit(X_vec, y)
 
-# UI
 st.title("Spam Classifier")
 
 msg = st.text_input("Enter a message")
