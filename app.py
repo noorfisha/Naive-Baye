@@ -3,7 +3,7 @@ import pandas as pd
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.naive_bayes import MultinomialNB
 
-df = pd.read_csv("spam.csv")
+df = pd.read_csv("spam_ham_dataset.csv")
 
 # Clean column names
 df.columns = df.columns.str.strip()
